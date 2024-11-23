@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="images">
+    <file>hhhh.png</file>
+    <file>hhhh.png</file>
+    <file>E:/3rd Semester/FinalProjectDSA/New folder/img.jpg</file>
+  </qresource>
+  <qresource prefix="newPrefix">
+    <file>hello.png</file>
+  </qresource>
+  <qresource prefix="newPrefix">
+    <file>insta.png</file>
+    <file>insta.png</file>
+  </qresource>
+  <qresource prefix="newPrefix">
+    <file>f.png</file>
+  </qresource>
+</RCC>

@@ -46,7 +46,7 @@ class Ui_Form(object):
         self.widget.setObjectName("widget")
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(30, 20, 301, 471))
-        self.label.setStyleSheet("border-image: url(img.jpg);\n"
+        self.label.setStyleSheet("border-image: url(./resources/img.jpg);\n"
 "border-top-left-radius: 50px;\n"
 "background-color:rgba(0,0,0,80);\n"
 "border-top-left-radius: 50px;")
@@ -148,7 +148,7 @@ class Ui_Form(object):
         self.label_5.setObjectName("label_5")
         self.pushButton_2 = QtWidgets.QPushButton(self.widget)
         self.pushButton_2.setGeometry(QtCore.QRect(440, 440, 20, 20))
-        self.pushButton_2.setStyleSheet("background-image: url(insta.png);\n"
+        self.pushButton_2.setStyleSheet("background-image: url(./resources/insta.png);\n"
 "\n"
 "QPushButton#pushButton_2 {\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:0.505682, x2:1, y2:0.477, stop:0 rgba(245, 235, 210, 219), stop:1 rgba(255, 245, 235, 226));\n"
@@ -171,7 +171,7 @@ class Ui_Form(object):
         self.pushButton_7 = QtWidgets.QPushButton(self.widget)
         self.pushButton_7.setGeometry(QtCore.QRect(480, 440, 21, 21))
         self.pushButton_7.setStyleSheet("\n"
-"background-image: url(Copy.png);\n"
+"background-image: url(./resources/f.png);\n"
 "\n"
 "\n"
 "QPushButton#pushButton_2 {\n"
@@ -194,7 +194,7 @@ class Ui_Form(object):
         self.pushButton_7.setObjectName("pushButton_7")
         self.pushButton_8 = QtWidgets.QPushButton(self.widget)
         self.pushButton_8.setGeometry(QtCore.QRect(520, 440, 20, 21))
-        self.pushButton_8.setStyleSheet("background-image: url(x.png);\n"
+        self.pushButton_8.setStyleSheet("background-image: url(./resources/x.png);\n"
 "\n"
 "\n"
 "\n"

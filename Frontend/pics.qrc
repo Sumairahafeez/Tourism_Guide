@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="images">
+    <file>fort.png</file>
+    <file>fort.png</file>
+    <file>Minar E Pakistan.jpg</file>
+    <file>Badshahi-mosque.jpg</file>
+    <file>download (8).jpg</file>
+    <file>Premium Photo _ Minar e pakistan evening.jpg</file>
+    <file>PAKISTAN, Badshahi mosque, Lahore, Punjab, Pakistan.jpg</file>
+    <file>11 Best Places to Visit in Lahore, Pakistan_ A Complete City Guide.jpg</file>
+    <file>shhh.jpg</file>
+    <file>11 Best Places to Visit in Lahore, Pakistan_ A Complete City Guide.jpg</file>
+    <file>download (8).jpg</file>
+    <file>download (8).jfif</file>
+  </qresource>
+  <qresource/>
+  <qresource prefix="newPrefix">
+    <file>download (8).jpg</file>
+  </qresource>
+</RCC>

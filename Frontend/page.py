@@ -52,7 +52,7 @@ class Ui_MainWindow(object):
         self.widget.setObjectName("widget")
         self.label = QtWidgets.QLabel(self.widget)
         self.label.setGeometry(QtCore.QRect(39, 30, 301, 451))
-        self.label.setStyleSheet("border-image:url(:/image/img.jpg);\n"
+        self.label.setStyleSheet("border-image:url(./resources/img.jpg);\n"
 "border-top-left-radius: 50px;")
         self.label.setText("")
         self.label.setObjectName("label")

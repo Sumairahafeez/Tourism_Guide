@@ -5,6 +5,9 @@ import csv
 import os
 from SignUp import Ui_Form  # Replace with actual file name
 from page import Ui_MainWindow
+from UImain import Ui_Forms
+from Aboutus import Ui_Formz
+from deste import Ui_Formm
 
 USER_FILE = "users.csv"
 
@@ -19,15 +22,7 @@ def save_user_to_csv(username, password, role):
         writer = csv.writer(file)
         writer.writerow([username, password, role])
 
-def validate_login(username, password):
-    if not os.path.exists(USER_FILE):
-        return False
-    with open(USER_FILE, mode='r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            if row["Username"] == username and row["Password"] == password:
-                return True
-    return False
+ 
 
 class LoginWindow(QMainWindow):
     def __init__(self):
@@ -38,14 +33,32 @@ class LoginWindow(QMainWindow):
         self.ui.label_5.mousePressEvent = self.open_signup
         self.ui.lineEdit_2.setEchoMode(QtWidgets.QLineEdit.Password)
         self.clear_fields()
+    def validate_login(self, username, password):
+        """Check credentials from CSV and return the role if valid."""
+        try:
+            with open(USER_FILE, "r") as file:
+                reader = csv.DictReader(file)
+                for row in reader:
+                    if row["Username"] == username and row["Password"] == password:
+                        return row["Role"]  # Return role (e.g., "user" or "admin")
+        except FileNotFoundError:
+            QtWidgets.QMessageBox.warning(self, "Error", "User data file not found.")
+        return None 
     def login_action(self):
         username = self.ui.lineEdit.text()
         password = self.ui.lineEdit_2.text()
 
-        if validate_login(username, password):
-            QtWidgets.QMessageBox.information(self, "Login Success", f"Welcome {username}!")
+        # Validate login credentials and role
+        role = self.validate_login(username, password)
+        if role == "User":
+            QtWidgets.QMessageBox.information(self,"Login successful",f"Welcome {username} (Role: {role})")
+            self.open_main_page()
+        elif role == "Admin":
+            QtWidgets.QMessageBox.information(self,"Login successful",f"Welcome {username} (Role: {role})")
+            self.open_admin_page()
         else:
-            QtWidgets.QMessageBox.warning(self, "Login Failed", "Invalid credentials. Please try again.")
+            QtWidgets.QMessageBox.warning(self, "Login Failed", "Invalid username or password!")
+
 
     def open_signup(self, event):
         self.signup_window = SignUpWindow()
@@ -55,6 +68,14 @@ class LoginWindow(QMainWindow):
     def clear_fields(self):
         self.ui.lineEdit.clear()
         self.ui.lineEdit_2.clear()
+    def open_main_page(self):
+        self.main_page = MainPage()
+        self.main_page.show()
+        self.close()
+
+    def open_admin_page(self):
+        QtWidgets.QMessageBox.information(self, "Admin Access", "Admin functionality coming soon!")
+
 class SignUpWindow(QMainWindow):
     def __init__(self):
         super(SignUpWindow, self).__init__()
@@ -86,7 +107,62 @@ class SignUpWindow(QMainWindow):
     def clear_fields(self):
         self.ui.lineEdit.clear()
         self.ui.lineEdit_3.clear()
-    
+class MainPage(QMainWindow):
+    def __init__(self):
+        super(MainPage, self).__init__()
+        self.ui = Ui_Forms()
+        self.ui.setupUi(self)
+        self.setup_main_page()
+
+    def setup_main_page(self):
+        # Customize the Main Page UI here
+        self.ui.pushButton.clicked.connect(self.handle_sway_away)
+        self.ui.pushButton_4.clicked.connect(self.open_about_us_page)
+        self.ui.pushButton_3.clicked.connect(self.open_places)
+
+    def open_about_us_page(self):
+        # Open the About Us page
+        self.about_us_page = AboutUsPage()
+        self.about_us_page.show()
+        self.close()
+    def open_places(self):
+        self.page = DestinationPage()
+        self.page.show()
+        self.close()
+
+    def handle_sway_away(self):
+        QtWidgets.QMessageBox.information(self,"lets gooo.!!","Navigating to SWAY AWAY page...")
+class AboutUsPage(QMainWindow):
+    def __init__(self):
+        super(AboutUsPage, self).__init__()
+        self.ui = Ui_Formz()
+        self.ui.setupUi(self)
+        self.setup_page()
+    def setup_page(self):
+        self.ui.pushButton.clicked.connect(self.open_main_page)
+    def open_main_page(self):
+        self.main_page=MainPage()
+        self.main_page.show()
+        self.close()
+class DestinationPage(QMainWindow):
+    def __init__(self):
+        super(DestinationPage, self).__init__()
+        self.ui = Ui_Formm()
+        self.ui.setupUi(self)
+        self.setup_page()
+    def setup_page(self):
+        self.ui.pushButton.clicked.connect(self.open_main_page)
+        self.ui.pushButton_2.clicked.connect(self.open_main_page)
+        self.ui.pushButton_3.clicked.connect(self.open_about_us)
+    def open_main_page(self):
+        self.main_page=MainPage()
+        self.main_page.show()
+        self.close()
+    def open_about_us(self):
+        self.page=AboutUsPage()
+        self.page.show()
+        self.close()
+
 def main():
     initialize_csv()
     app = QApplication(sys.argv)

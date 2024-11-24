@@ -171,7 +171,7 @@ class Ui_Form(object):
         self.pushButton_7 = QtWidgets.QPushButton(self.widget)
         self.pushButton_7.setGeometry(QtCore.QRect(480, 440, 21, 21))
         self.pushButton_7.setStyleSheet("\n"
-"background-image: url(./resources/f.png);\n"
+"background-image: url(./resources/ffff - Copy.png);\n"
 "\n"
 "\n"
 "QPushButton#pushButton_2 {\n"

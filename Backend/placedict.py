@@ -50,4 +50,4 @@ def GetRandomPlaces():
     return [place for place in places if place['Ratings'] in RandomPlaces[:6]]
 def GetPlacesByCategory(category):
     places = ReadCsv()
-    return [place for place in places if place['Category'].lower == category.lower()]  
+    return [place for place in places if place['Category'].lower == category.lower()] 

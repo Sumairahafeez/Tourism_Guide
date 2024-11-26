@@ -7,7 +7,7 @@ from SignUp import Ui_Form  # Replace with actual file name
 from page import Ui_MainWindow
 from UImain import Ui_Forms
 from Aboutus import Ui_Formz
-from deste import Ui_Formm
+from demoMain import Ui_Formm
 
 USER_FILE = "users.csv"
 

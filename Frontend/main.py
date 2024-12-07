@@ -8,6 +8,7 @@ from page import Ui_MainWindow
 from UImain import Ui_Forms
 from Aboutus import Ui_Formz
 from demoMain import Ui_Formm
+import BuildCategories
 
 USER_FILE = "users.csv"
 

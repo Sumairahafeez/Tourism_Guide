@@ -12,7 +12,7 @@ import subprocess
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from VisitList import VisitListManager # type: ignore
-
+#from BuildCategories import MainForm
 
 class Ui_Formm(object):
     def setupUi(self, Form):

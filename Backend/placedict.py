@@ -11,7 +11,7 @@ def ReadCsv():
                 places.append({
                     'Name': row[0],
                     'Ratings': row[1],
-                    'Category': row[2]
+                    'Category': row[2],
                 })
                 print("places loaded successfully")        
     except FileNotFoundError:

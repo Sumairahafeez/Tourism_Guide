@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Recommendations as rm
-
+import HistoryTracker as ht
+import datetime
 class Ui_Formm(object):
     def setupUi(self, Form):
         self.Form = Form  # Store the Form reference for later use
@@ -33,7 +34,7 @@ class Ui_Formm(object):
         self.navLayout.setContentsMargins(10, 10, 10, 10)
 
         # Add buttons to the navbar
-        for label in ["Sway Away","Home", "About Us", "Contact Us", "My Lists", "My History","Log Out"]:
+        for label in ["Sway Away","Home", "About Us", "Contact Us", "My Lists", "My History","Maps","Log Out"]:
             button = QtWidgets.QPushButton(label)
             button.setFixedSize(180, 50)
             button.setStyleSheet("""
@@ -191,9 +192,11 @@ class Ui_Formm(object):
 
     def addToList(self, place_name):
         print(f"Adding {place_name} to the list")
+        ht.add(f"Added {place_name} to the list at {datetime.datetime.now()}")
 
     def showMap(self, place_name):
         print(f"Showing map for {place_name}")
+        ht.add(f"Viewed map for {place_name} at {datetime.datetime.now()}")
 
     def refreshRecommendations(self):
         selected_category = self.comboBox.currentText() 

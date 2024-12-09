@@ -26,7 +26,9 @@ class Queue:
         if self.head == None:
             return None
         else:
-            return self.head.data   
+            return self.head.data
+    def tostring(self):
+        return str(self.head.data)     
     def getAll(self):
         actions = []
         current = self.head

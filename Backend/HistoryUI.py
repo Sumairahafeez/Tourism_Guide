@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import Recommendations as rm
-import HistoryTracker as ht
+from Backend import HistoryTracker as ht
 import datetime
 class Ui_Formm(object):
     
@@ -89,7 +88,7 @@ class Ui_Formm(object):
         self.centralLayout.addLayout(controlLayout)
 
         # Fetch places and recommendations
-        actions = ht.HistoryTracker.getAll(self.Tracker)
+        actions = self.Tracker.getAll()
         # Create cards dynamically
         self.cards = []  # List to store card references
         actions = self.Tracker.readFromcsv()

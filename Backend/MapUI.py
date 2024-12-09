@@ -6,8 +6,8 @@ import folium
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QPushButton, QLabel, QFileDialog, QTextEdit
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from PyQt5.QtCore import QUrl
-from Graphs import Graph  # Assuming you have the Graph class in a Graphs module
-import Maps
+# from DataStructures import Graphs  # Assuming you have the Graph class in a Graphs module
+import Backend as Maps  # Assuming you have the load_map function in a Maps module
 
 class MapApp(QMainWindow):
     def __init__(self):

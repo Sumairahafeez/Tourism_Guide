@@ -1,8 +1,15 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
+import calendar
+from PyQt5 import QtCore, QtGui, QtWidgets,QtWebEngineWidgets
 import Backend as rm
 from Backend import HistoryTracker as ht
 import datetime
 from HistoryUI import Ui_Formm as historyUI
+
+from functools import partial
+from DataStructures import RBTree
+import os
+import requests
+
 class Ui_Formm(object):
     def setupUi(self, Form):
         self.Form = Form  # Store the Form reference for later use
@@ -19,7 +26,7 @@ class Ui_Formm(object):
                 );
             }
         """)
-
+       
         # Create the main horizontal layout
         self.mainLayout = QtWidgets.QHBoxLayout(Form)
         
@@ -34,9 +41,15 @@ class Ui_Formm(object):
         """)
         self.navLayout = QtWidgets.QVBoxLayout(self.navbar)
         self.navLayout.setContentsMargins(10, 10, 10, 10)
+        
+        self.Form = Form
+        self.Tracker = ht.createInstance()
+
+        self.itineraryTree = RBTree()  # Initialize Red-Black Tree for itinerary storage
+
 
         # Add buttons to the navbar
-        for label in ["Sway Away","Home", "About Us", "Contact Us", "My Lists", "My History","Maps","Destinations","Log Out"]:
+        for label in ["Sway Away","Home", "About Us", "Contact Us", "My Travel Plans", "My History","Maps","Destinations","Log Out"]:
             button = QtWidgets.QPushButton(label)
             button.setFixedSize(180, 50)
             button.setStyleSheet("""
@@ -59,6 +72,12 @@ class Ui_Formm(object):
             if label == "My History":
                 button.clicked.connect(self.showHistoryPage)  # Connect to show history page
             self.navLayout.addWidget(button)
+
+            button.setObjectName(f"navButton_{label.lower()}")
+            if label == "My Travel Plan":
+               button.clicked.connect(self.showTravelPlan)
+            
+            
 
         # Add a spacer to push buttons to the top
         self.navLayout.addSpacerItem(QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
@@ -157,12 +176,16 @@ class Ui_Formm(object):
 
             # Buttons Section
             button_layout = QtWidgets.QHBoxLayout()
-            add_to_list_button = QtWidgets.QPushButton("Add to List", card_container)
+            add_to_list_button = QtWidgets.QPushButton("Add to My Plan", card_container)
             self.designButton(add_to_list_button)
-            add_to_list_button.clicked.connect(lambda: self.addToList(node.name))
+        
+            add_to_list_button.clicked.connect(partial(self.addToList, node.name))
+
             show_map_button = QtWidgets.QPushButton("Show Map", card_container)
             self.designButton(show_map_button)
-            show_map_button.clicked.connect(lambda: self.showMap(node.name))
+          
+            show_map_button.clicked.connect(lambda checked, name=node.name: self.showMap(name))
+
             button_layout.addWidget(add_to_list_button)
             button_layout.addWidget(show_map_button)
 
@@ -200,12 +223,50 @@ class Ui_Formm(object):
         """)
 
     def addToList(self, place_name):
-        print(f"Adding {place_name} to the list")
-        self.Tracker.add(f"Added {place_name} to the list at {datetime.datetime.now()}")
+       dialog = QtWidgets.QDialog()
+       dialog.setWindowTitle(f"Add {place_name} to Itinerary")
+       dialog.resize(400, 300)
 
-    def showMap(self, place_name):
-        print(f"Showing map for {place_name}")
-        self.Tracker.add(f"Viewed map for {place_name} at {datetime.datetime.now()}")
+       layout = QtWidgets.QVBoxLayout()
+
+    # Calendar to select Date
+       date_label = QtWidgets.QLabel("Select Date:")
+       calendar = QtWidgets.QCalendarWidget()
+       layout.addWidget(date_label)
+       layout.addWidget(calendar)
+    #background clr 
+       background_color = "#F5F5DC"
+       calendar.setStyleSheet(f"background-color: {background_color};")
+    # Time picker to select Time
+       time_label = QtWidgets.QLabel("Select Time:")
+       time_picker = QtWidgets.QTimeEdit()
+       time_picker.setDisplayFormat("HH:mm")
+       layout.addWidget(time_label)
+       layout.addWidget(time_picker)
+
+    # Confirm Button to finalize adding the place
+       confirm_btn = QtWidgets.QPushButton("Confirm")
+       self.designButton(confirm_btn)
+       layout.addWidget(confirm_btn)
+
+       dialog.setLayout(layout)
+
+       def on_confirm():
+          selected_date = calendar.selectedDate().toString("yyyy-MM-dd")
+          selected_time = time_picker.time().toString("HH:mm")
+          # Save the itinerary item
+          self.itineraryTree.insert(place_name, f"{selected_date} at {selected_time}")
+
+          print(f"Added {place_name} to itinerary on {selected_date} at {selected_time}")
+          self.Tracker.add(f"Added {place_name} to the list on {selected_date} at {selected_time}")
+
+          dialog.accept()
+
+       confirm_btn.clicked.connect(on_confirm)
+
+       dialog.exec_()  # Show the dialog
+
+
 
     def refreshRecommendations(self):
         selected_category = self.comboBox.currentText() 
@@ -220,6 +281,142 @@ class Ui_Formm(object):
         elif selected_priority == 'Top Most':    
             tree = rm.bfsRecommendation(rm.build_Tree(places), selected_category, 1)
             self.createCards(tree)  # Recreate the cards based on the selected category
+    
+
+    def showTravelPlan(self):
+    # Clear previous cards
+       for card in self.cards:
+         card.deleteLater()
+       self.cards.clear()
+
+    # Retrieve itinerary items from the Red-Black Tree
+       itinerary_items = self.itineraryTree.get_itinerary()
+
+       if not itinerary_items:
+          msg_box = QtWidgets.QMessageBox()
+          msg_box.setText("No items found in your itinerary.")
+          msg_box.exec_()
+          return
+
+    # Create and display cards for each itinerary item
+       for key, date_time in itinerary_items:
+          card_container = QtWidgets.QWidget()
+          card_container.setFixedSize(900, 180)
+          card_container.setStyleSheet("""
+            QWidget {
+                background-color: #F5F5DC;
+                border: 2px solid #8B4513;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            }
+        """)
+
+          card_layout = QtWidgets.QHBoxLayout(card_container)
+
+          text_layout = QtWidgets.QVBoxLayout()
+          place_label = QtWidgets.QLabel(f"<b>Place:</b> {key}")
+          date_label = QtWidgets.QLabel(f"<b>Date & Time:</b> {date_time}")
+
+          text_layout.addWidget(place_label)
+          text_layout.addWidget(date_label)
+
+          card_layout.addLayout(text_layout)
+
+          self.centralLayout.addWidget(card_container)
+          self.cards.append(card_container)
+
+
+    def getPlaceLocation(self, place_name):
+    
+    
+        try:
+        # OpenStreetMap Nominatim API endpoint
+           url = "https://nominatim.openstreetmap.org/search"
+           params = {
+            'q': place_name,
+            'format': 'json',
+            'addressdetails': 1,
+            'limit': 1
+        }
+        
+        # Send a GET request to the Nominatim API
+           response = requests.get(url, params=params)
+        
+        # Check if the request was successful
+           if response.status_code == 200:
+              data = response.json()
+              if data:
+                # Extract latitude and longitude from the response
+                latitude = float(data[0]['lat'])
+                longitude = float(data[0]['lon'])
+                print(f"Fetched location for {place_name}: {latitude}, {longitude}")
+                return latitude, longitude
+              else:
+                print(f"No results found for {place_name}. Using default location.")
+                return  56.67, 20.75   # Default fallback location
+           else:
+            print(f"Error: Unable to fetch location for {place_name}. Status Code: {response.status_code}")
+            return 31.5497, 74.3436  # Fallback to a default location
+
+        except Exception as e:
+          print(f"Error while fetching location for {place_name}: {e}")
+          return 56.67, 20.75  # Fallback in case of error
+
+
+    def showMap(self, place_name):
+       print(f"Showing map for {place_name}")
+
+    # Fetch dynamic coordinates using OpenStreetMap API
+       latitude, longitude = self.getPlaceLocation(place_name)
+
+    # Generate the HTML content for Leaflet.js
+       html_content = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map of {place_name}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        html, body, #map {{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }}
+    </style>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 100%;"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([{latitude}, {longitude}], 15);
+        L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+            attribution: '&copy; OpenStreetMap contributors'
+        }}).addTo(map);
+        L.marker([{latitude}, {longitude}]).addTo(map)
+            .bindPopup("<b>{place_name}</b>").openPopup();
+    </script>
+</body>
+</html> """
+    # Save the HTML content to a temporary file
+       temp_path = os.path.join(os.getcwd(), "map_temp.html")
+       with open(temp_path, "w", encoding="utf-8") as file:
+         file.write(html_content)
+
+    # Open the map in QWebEngineView
+       self.map_window = QtWidgets.QWidget()
+       self.map_window.setWindowTitle(f"{place_name} Map")
+       self.map_window.resize(800, 600)
+
+       layout = QtWidgets.QVBoxLayout()
+       self.web_view = QtWebEngineWidgets.QWebEngineView()
+       self.web_view.load(QtCore.QUrl.fromLocalFile(temp_path))
+
+       layout.addWidget(self.web_view)
+       self.map_window.setLayout(layout)
+       self.map_window.show()
 
 
 if __name__ == "__main__":

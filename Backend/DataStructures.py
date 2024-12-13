@@ -101,6 +101,65 @@ class Graph:
             for neighbor, weight in self.graph[current_node]:
                 distance[neighbor] = min(distance[neighbor], distance[current_node] + weight)
         return distance
+    
+
+class RBNode:
+       def __init__(self, key, date_time):
+          self.key = key  # Place name
+          self.date_time = date_time  # Date and Time of visit
+          self.color = "red"  # New nodes are red by default
+          self.left = None
+          self.right = None
+          self.parent = None
+  
+class RBTree:
+    def __init__(self):
+        self.nil = RBNode(None, None)
+        self.nil.color = "black"  # Sentinel node
+        self.root = self.nil
+
+    def insert(self, key, date_time):
+        new_node = RBNode(key, date_time)
+        new_node.left = self.nil
+        new_node.right = self.nil
+        new_node.parent = None
+
+        parent = None
+        current = self.root
+
+        while current != self.nil:
+            parent = current
+            if key < current.key:
+                current = current.left
+            else:
+                current = current.right
+
+        new_node.parent = parent
+        if parent is None:  # New node is the root
+            self.root = new_node
+        elif new_node.key < parent.key:
+            parent.left = new_node
+        else:
+            parent.right = new_node
+
+        new_node.color = "red"
+        self.fix_insert(new_node)
+
+    def fix_insert(self, node):
+        # Red-Black Tree balancing logic
+        pass
+
+    def inorder_traversal(self, node, result):
+        if node != self.nil:
+            self.inorder_traversal(node.left, result)
+            result.append((node.key, node.date_time))
+            self.inorder_traversal(node.right, result)
+
+    def get_itinerary(self):
+        result = []
+        self.inorder_traversal(self.root, result)
+        return result
+
 
 
                         

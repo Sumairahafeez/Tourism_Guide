@@ -1,13 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Backend import HistoryTracker as ht
-import datetime
+import navBar
 class Ui_Formm(object):
     
     def setupUi(self, Form):
         self.Form = Form  # Store the Form reference for later use
         self.Tracker = ht.createInstance()
         Form.setObjectName("Form")
-        Form.resize(1004, 864)
+        Form.resize(2012, 1081)
         Form.setStyleSheet("""
             QWidget {
                 background: qlineargradient(
@@ -26,35 +26,13 @@ class Ui_Formm(object):
         self.navbar.setFixedWidth(200)
         self.navbar.setStyleSheet("""
             QWidget {
-                background-color: #8B4513;  /* Dark brown background */
-                border-right: 2px solid #F5F5DC;  /* Beige border on the right */
+                background-color: #D2B48C;  /* Gradient from beige to dark brown */
+                border-right: 2px solid #F5F5DC;  /* Beige border */
             }
         """)
         self.navLayout = QtWidgets.QVBoxLayout(self.navbar)
-        self.navLayout.setContentsMargins(10, 10, 10, 10)
-
-        # Add buttons to the navbar
-        for label in ["Sway Away","Home", "About Us", "Contact Us", "My Lists", "My History","Maps","Log Out"]:
-            button = QtWidgets.QPushButton(label)
-            button.setFixedSize(180, 50)
-            button.setStyleSheet("""
-                QPushButton {
-                    background-color: #F5F5DC;  /* Beige button background */
-                    color: #8B4513;            /* Dark brown text color */
-                    font-size: 14px;
-                    border: none;
-                    border-radius: 5px;
-                    padding: 10px;
-                }
-                QPushButton:hover {
-                    background-color: #D2B48C;  /* Lighter beige on hover */
-                }
-                QPushButton:pressed {
-                    background-color: #C19A6B;  /* Darker beige on press */
-                }
-            """)
-            button.setObjectName(f"navButton_{label.lower()}")
-            self.navLayout.addWidget(button)
+        self.navLayout.setContentsMargins(10, 10, 10, 10)       
+        navBar.navBar(self.navLayout,self.Form)    
 
         # Add a spacer to push buttons to the top
         self.navLayout.addSpacerItem(QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
@@ -92,14 +70,13 @@ class Ui_Formm(object):
         # Create cards dynamically
         self.cards = []  # List to store card references
         actions = self.Tracker.readFromcsv()
-        self.createCards(actions)
+        self.createCards(actions[:10])
 
         # Add a spacer at the bottom for centering effect
         self.centralLayout.addSpacerItem(QtWidgets.QSpacerItem(20, 50, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
 
         # Add the central widget to the main layout
-        self.mainLayout.addWidget(self.centralWidget)
-
+        self.mainLayout.addWidget(self.centralWidget)        
     def createCards(self, actions):       
         # Remove all widgets from the central layout (clear all previous cards)
         for i in reversed(range(self.centralLayout.count())):
@@ -121,8 +98,8 @@ class Ui_Formm(object):
             notification_bar.setFixedSize(880, 80)  # Notification bar size adjusted to fit the central area
             notification_bar.setStyleSheet("""
                 QWidget {
-                    background-color: #FFFACD;  /* Light yellow background */
-                    border: 2px solid #FFD700;  /* Gold border */
+                    background-color:#F5F5DC;  /* Light yellow background */
+                    border: 2px solid #D2B48C;  /* Gold border */
                     border-radius: 8px;         /* Rounded corners */
                     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
                     padding: 10px;

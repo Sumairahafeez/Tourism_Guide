@@ -3,19 +3,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets,QtWebEngineWidgets
 import Backend as rm
 from Backend import HistoryTracker as ht
 import datetime
-from HistoryUI import Ui_Formm as historyUI
-
 from functools import partial
-from DataStructures import RBTree
+import DataStructures
+import navBar as nb
 import os
 import requests
-
 class Ui_Formm(object):
     def setupUi(self, Form):
         self.Form = Form  # Store the Form reference for later use
         self.Tracker = ht.createInstance()
         Form.setObjectName("Form")
-        Form.resize(1004, 864)
+        Form.resize(2012, 1081)
         Form.setStyleSheet("""
             QWidget {
                 background: qlineargradient(
@@ -35,8 +33,8 @@ class Ui_Formm(object):
         self.navbar.setFixedWidth(200)
         self.navbar.setStyleSheet("""
             QWidget {
-                background-color: #8B4513;  /* Dark brown background */
-                border-right: 2px solid #F5F5DC;  /* Beige border on the right */
+                background-color: #D2B48C;  /* Gradient from beige to dark brown */
+                border-right: 2px solid #F5F5DC;  /* Beige border */
             }
         """)
         self.navLayout = QtWidgets.QVBoxLayout(self.navbar)
@@ -45,39 +43,8 @@ class Ui_Formm(object):
         self.Form = Form
         self.Tracker = ht.createInstance()
 
-        self.itineraryTree = RBTree()  # Initialize Red-Black Tree for itinerary storage
-
-
-        # Add buttons to the navbar
-        for label in ["Sway Away","Home", "About Us", "Contact Us", "My Travel Plans", "My History","Maps","Destinations","Log Out"]:
-            button = QtWidgets.QPushButton(label)
-            button.setFixedSize(180, 50)
-            button.setStyleSheet("""
-                QPushButton {
-                    background-color: #F5F5DC;  /* Beige button background */
-                    color: #8B4513;            /* Dark brown text color */
-                    font-size: 14px;
-                    border: none;
-                    border-radius: 5px;
-                    padding: 10px;
-                }
-                QPushButton:hover {
-                    background-color: #D2B48C;  /* Lighter beige on hover */
-                }
-                QPushButton:pressed {
-                    background-color: #C19A6B;  /* Darker beige on press */
-                }
-            """)
-            button.setObjectName(f"navButton_{label.lower()}")
-            if label == "My History":
-                button.clicked.connect(self.showHistoryPage)  # Connect to show history page
-            self.navLayout.addWidget(button)
-
-            button.setObjectName(f"navButton_{label.lower()}")
-            if label == "My Travel Plan":
-               button.clicked.connect(self.showTravelPlan)
-            
-            
+        self.itineraryTree = DataStructures.RBTreeNode  # Initialize Red-Black Tree for itinerary storage
+        nb.navBar(self.navLayout,Form)            
 
         # Add a spacer to push buttons to the top
         self.navLayout.addSpacerItem(QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
@@ -131,12 +98,6 @@ class Ui_Formm(object):
 
         # Add the central widget to the main layout
         self.mainLayout.addWidget(self.centralWidget)
-    def showHistoryPage(self):
-        self.Form.hide()
-        self.historyPage = QtWidgets.QWidget()
-        self.ui = historyUI()
-        self.ui.setupUi(self.historyPage)
-        self.historyPage.show()
     def createCards(self, tree):
         # Clear previous cards if any
         for card in self.cards:
@@ -185,18 +146,19 @@ class Ui_Formm(object):
             self.designButton(show_map_button)
           
             show_map_button.clicked.connect(lambda checked, name=node.name: self.showMap(name))
-
+            show_nearest = QtWidgets.QPushButton("Show Nearest", card_container)
+            self.designButton(show_nearest)
+            show_nearest.clicked.connect(lambda checked, name=node.name: rm.showMap(name))
             button_layout.addWidget(add_to_list_button)
             button_layout.addWidget(show_map_button)
-
+            button_layout.addWidget(show_nearest)
             # Add text and buttons to the card layout
             text_layout.addLayout(button_layout)
             card_layout.addLayout(text_layout)
 
             # Add the card to the main layout
             self.centralLayout.addWidget(card_container)
-            self.cards.append(card_container)
-
+            self.cards.append(card_container)     
     def designButton(self, button):
         # Button design using stylesheet
         button.setStyleSheet("""
@@ -221,6 +183,25 @@ class Ui_Formm(object):
                 background-color: #F5F5DC;  /* Even darker green on press */
             }
         """)
+    
+    def showLahoreMap(self):
+       dialog = QtWidgets.QDialog()
+       dialog.setWindowTitle("Map")
+       dialog.resize(600, 400)
+
+    # Create QWebEngineView to display the map
+       web_view = QtWebEngineWidgets.QWebEngineView()
+
+    # Define the Google Maps URL (center the map on Lahore as an example)
+       google_maps_url = "https://www.google.com/maps/place/Lahore"
+
+       web_view.setUrl(QtCore.QUrl(google_maps_url))
+
+       layout = QtWidgets.QVBoxLayout()
+       layout.addWidget(web_view)
+
+       dialog.setLayout(layout)
+       dialog.exec_()
 
     def addToList(self, place_name):
        dialog = QtWidgets.QDialog()
@@ -288,7 +269,7 @@ class Ui_Formm(object):
        for card in self.cards:
          card.deleteLater()
        self.cards.clear()
-
+       print("Fetching itinerary items...")
     # Retrieve itinerary items from the Red-Black Tree
        itinerary_items = self.itineraryTree.get_itinerary()
 

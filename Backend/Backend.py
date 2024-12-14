@@ -2,6 +2,8 @@ from DataStructures import Tree ,Queue,Graph
 import DataStructures as ds
 import csv
 import random
+import networkx as nx
+import matplotlib.pyplot as plt
 def divideCategory(category):
     print(category)
     if 'museums' in category.lower() or 'art' in category.lower():
@@ -107,12 +109,13 @@ class HistoryTracker:
     def peek(self):
         return self.history.peek()
     def getAll(self):
-        return self.history.getAll()
+        actions = self.history.getAll()
+        return actions
     def getLatest(self):
-        return self.readFromcsv()
+        return self.readFromcsv()[:7]
     def getoldest(self):
         actions = self.readFromcsv()
-        actions.reverse()
+        actions.reverse()[:7]
         return actions
     def writeTocsv(self, action):
         with open('history.csv', 'a', newline='') as file:
@@ -145,12 +148,57 @@ def connectPlaces(places):
                 weight = random.randint(1, 10)
                 g.addEdge(place, other_place, weight)
     # g.display() 
-    for place in places:
-        print(f"Shortest path from {place}:")
-        distances = g.dijkstra(place)
-        for other_place in places:
-            print(f"{other_place}: {distances[other_place]}")           
+    # for place in places:
+    #     print(f"Shortest path from {place}:")
+    #     distances = g.dijkstra(place)
+    #     for other_place in places:
+    #         print(f"{other_place}: {distances[other_place]}")           
     return g
 load_map('Places.csv')               
+def showMap(start_place):
+    g = load_map('Places.csv')
+
+    # Calculate the shortest path using Dijkstra's algorithm
+    distances, previous_nodes = g.dijkstra(start_place)
+    
+    # Find the 6 nodes with the minimum distances (nearest nodes)
+    sorted_nodes = sorted(distances.items(), key=lambda x: x[1])
+    nearest_nodes = sorted_nodes[:6]  # Take the first 6 closest nodes
+    
+    # Create a NetworkX graph for visualization with only the nearest nodes and their edges
+    nx_graph = nx.Graph()
+    
+    # Add the nearest nodes to the graph
+    for node, _ in nearest_nodes:
+        nx_graph.add_node(node)
+    
+    # Add edges for the nearest nodes
+    for node, _ in nearest_nodes:
+        for neighbor, weight in g.nodes[node].items():
+            if neighbor in dict(nearest_nodes):  # Ensure the neighbor is one of the nearest nodes
+                nx_graph.add_edge(node, neighbor, weight=weight)
+    
+    # Adjust layout to spread nodes more evenly
+    pos = nx.spring_layout(nx_graph, seed=42, k=0.2)  # 'k' controls spacing between nodes
+    
+    # Increase plot size to make the graph less congested
+    plt.figure(figsize=(12, 10))
+    
+    # Draw the graph with adjusted parameters
+    nx.draw(nx_graph, pos, with_labels=True, node_size=1500, node_color='brown', font_size=12, font_weight='bold')
+    edge_labels = nx.get_edge_attributes(nx_graph, 'weight')
+    nx.draw_networkx_edge_labels(nx_graph, pos, edge_labels=edge_labels, font_size=10)
+    
+    # Title and display the plot
+    plt.title(f"Nearest 6 Places from {start_place}", fontsize=16)
+    plt.axis('off')  # Turn off the axis
+    plt.show()
+    
+    # Print the shortest path from the start node to the nearest 6 nodes
+    print(f"Shortest paths from {start_place}:")
+    for node, _ in nearest_nodes:
+        print(f"{node}: {distances[node]}")
+    
+    return g
 
 

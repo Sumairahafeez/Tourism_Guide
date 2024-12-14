@@ -61,46 +61,34 @@ def shuffleArray(arr):
         j = random.randint(0,n-1)
         arr[i], arr[j] = arr[j], arr[i]     
 class Graph:
-    def __init__(self, directed=False):
-        self.graph = {}
-        self.directed = directed
-    def addNode(self, node):
-        if node not in self.graph:
-            self.graph[node] = []
-    def addEdge(self, node1, node2, weight):
-        self.addNode(node1)
-        self.addNode(node2)
-        self.graph[node1].append((node2, weight))
-        if not self.directed:
-            self.graph[node2].append((node1, weight))
-    def display(self):
-        for node in self.graph:
-            print(node, '->', self.graph[node])
-    def getNeighbors(self, node):
-        return self.graph[node]
-    def removeEdge(self, fromNode, toNode):
-        self.graph[fromNode] = [(Node, weight) for Node, weight in self.graph[fromNode] if Node != toNode]
-        if not self.directed:
-            self.graph[toNode] = [(Node, weight) for Node, weight in self.graph[toNode] if Node != fromNode]
-    def removeNode(self, node):
-        del self.graph[node]
-        for n in self.graph:
-            self.graph[n] = [(Node, weight) for Node, weight in self.graph[n] if Node != node]
+    def __init__(self):
+        self.nodes = {}
+    
+    def addNode(self, value):
+        self.nodes[value] = {}
+    
+    def addEdge(self, from_node, to_node, weight):
+        self.nodes[from_node][to_node] = weight
+        self.nodes[to_node][from_node] = weight  # Assuming undirected graph
     def dijkstra(self, start):
-        distance = {node: float('infinity') for node in self.graph}
-        distance[start] = 0
-        visited = set()
-        while len(visited) < len(self.graph):
-            current_node = None
-            current_min_distance = float('infinity')
-            for node in self.graph:
-                if node not in visited and distance[node] < current_min_distance:
-                    current_node = node
-                    current_min_distance = distance[node]
-            visited.add(current_node)
-            for neighbor, weight in self.graph[current_node]:
-                distance[neighbor] = min(distance[neighbor], distance[current_node] + weight)
-        return distance
+        # Initialize distances and previous nodes
+        distances = {node: float('inf') for node in self.nodes}
+        previous_nodes = {node: None for node in self.nodes}
+        distances[start] = 0
+        unvisited_nodes = list(self.nodes.keys())
+        
+        while unvisited_nodes:
+            # Get the node with the smallest distance
+            current_node = min(unvisited_nodes, key=lambda node: distances[node])
+            unvisited_nodes.remove(current_node)
+            
+            for neighbor, weight in self.nodes[current_node].items():
+                if neighbor in unvisited_nodes:
+                    alternative_route = distances[current_node] + weight
+                    if alternative_route < distances[neighbor]:
+                        distances[neighbor] = alternative_route
+                        previous_nodes[neighbor] = current_node
+        return distances, previous_nodes
     
 
 class RBNode:
@@ -117,7 +105,6 @@ class RBTree:
         self.nil = RBNode(None, None)
         self.nil.color = "black"  # Sentinel node
         self.root = self.nil
-
     def insert(self, key, date_time):
         new_node = RBNode(key, date_time)
         new_node.left = self.nil
@@ -159,6 +146,7 @@ class RBTree:
         result = []
         self.inorder_traversal(self.root, result)
         return result
+RBTreeNode = RBTree()        
 
 
 

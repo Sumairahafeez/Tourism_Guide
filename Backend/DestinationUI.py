@@ -1,5 +1,5 @@
 import calendar
-from PyQt5 import QtCore, QtGui, QtWidgets,QtWebEngineWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 import Backend as rm
 from Backend import HistoryTracker as ht
 import datetime

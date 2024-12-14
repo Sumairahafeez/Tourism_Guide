@@ -44,7 +44,7 @@ class Ui_Formz(object):
 
         # Example content (your existing labels and widgets)
         self.label = QtWidgets.QLabel(self.contentArea)
-        self.label.setStyleSheet("background-image: url(./resources/ok.png);")
+        self.label.setStyleSheet("background-image: url(C:/Users/dell/Desktop/DSA(Final)/AboutusUI/resources/last.png);")
         self.label.setText("")
         self.label.setObjectName("label")
         self.contentLayout.addWidget(self.label)
@@ -115,6 +115,9 @@ class Ui_Formz(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
+        self.label_5.setText("We started our journey with a strong vision,  to show people the worth of our city.")
+        self.label_6.setText("Now, we've a strong & cooperative team which guides the tourists to their destiny.")
+        self.label_7.setText("Your story begins with our story. Step in with us to enjoy the exploration to Lahore.")
 
 if __name__ == "__main__":
     import sys

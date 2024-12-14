@@ -121,7 +121,7 @@ class MainPage(QMainWindow):
 
     def open_about_us_page(self):
         self.close()
-        navBar.ShowAboutUs(self)
+        navBar.showAboutUs(self)
     def open_places(self):
         self.close()
         navBar.showDestinationPage(self)

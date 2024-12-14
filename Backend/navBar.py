@@ -40,34 +40,16 @@ def showTravelPlan(Form):
     travelPlanUI.setupUi(travelPlanPage)
     travelPlanPage.show() 
 def showMainPage(Form):
-    print("Main Page")
-    Form.close()
-    main = MainPage()
-    main.show()
-    # sys.exit(app.exec_())
-    # mainPage.open_main_page(mainPage)
-class MainPage(QMainWindow):
-    def __init__(self):
-        super(MainPage, self).__init__()
-        self.ui = Ui_Forms()
-        self.ui.setupUi(self)
-        self.setup_main_page()
-
-    def setup_main_page(self):
-        # Customize the Main Page UI here
-        self.ui.pushButton.clicked.connect(self.handle_sway_away)
-        self.ui.pushButton_4.clicked.connect(self.open_about_us_page)
-        self.ui.pushButton_3.clicked.connect(self.open_places)
-
-    def open_about_us_page(self):
-        self.close()
-        navBar.ShowAboutUs(self)
-    def open_places(self):
-        self.close()
-        navBar.showDestinationPage(self)
-
-    def handle_sway_away(self):
-        QtWidgets.QMessageBox.information(self,"lets gooo.!!","Navigating to SWAY AWAY page...")                 
+    #print("Main Page")
+    #Form.close()
+    mainPage = QtWidgets.QWidget()
+    mainUI = Ui_Forms()
+    mainUI.setupUi(mainPage)
+    mainPage.show()
+    #sys.exit(app.exec_())
+    #mainPage.open_main_page(mainPage)   
+def handle_sway_away(Form):
+        QtWidgets.QMessageBox.information(Form,"lets gooo.!!","Navigating to SWAY AWAY ...")           
 def navBar(navLayout,Form):
     for label in ["Sway Away","Home", "About Us", "Contact Us", "My Travel Plans", "My History","Maps","Destinations","Log Out"]:
             button = QtWidgets.QPushButton(label)
@@ -100,7 +82,7 @@ def navBar(navLayout,Form):
             if label == "Log Out":
                button.clicked.connect(Form.close)
             if label == "Sway Away":
-               pass
+               button.clicked.connect(lambda:handle_sway_away(Form))
             if label == "Home":
                button.clicked.connect(lambda: showMainPage(Form))
             if label == "About Us":

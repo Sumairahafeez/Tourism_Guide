@@ -283,7 +283,7 @@ class Ui_Form(object):
         self.label_6.setText(_translate("Form", "Select Role:"))
         self.label_7.setText(_translate("Form", "Password"))
         self.label_8.setText(_translate("Form", "User Name"))
-import ress
+
 
 
 if __name__ == "__main__":

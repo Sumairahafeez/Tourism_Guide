@@ -178,7 +178,6 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "Create the account first..!"))
         self.label_6.setText(_translate("MainWindow", "Password"))
         self.label_7.setText(_translate("MainWindow", "User Name"))
-import res
 
 
 if __name__ == "__main__":

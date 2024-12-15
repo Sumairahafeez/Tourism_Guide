@@ -138,7 +138,7 @@ QPushButton#pushButton_2:pressed{
 }</string>
    </property>
    <property name="text">
-    <string>OUR LAHORE</string>
+    <string>Get Started</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">

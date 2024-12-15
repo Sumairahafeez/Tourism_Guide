@@ -43,7 +43,7 @@ class Ui_Formz(object):
         # Example content (your existing labels and widgets)
         self.label = QtWidgets.QLabel(self.contentArea)
         self.label.setGeometry(QtCore.QRect(0, -20, 2321, 361))
-        self.label.setStyleSheet("background-image: url(./resources/ok.png);"
+        self.label.setStyleSheet("background-image: url(./resources/last.png);"
                                  "background-position: center;"
                                  "font-size: 50px; color: #5D4037; font-family: Georgia;"
                                  "text-align: center;"
@@ -74,7 +74,7 @@ class Ui_Formz(object):
         self.label_5.setObjectName("label_5")
         self.label_5.setStyleSheet("""
         QLabel {
-            font-size: 20px;       /* Change font size */
+            font-size: 15px;       /* Change font size */
             color:  #5D4037;        /* Change text color to gold */
             font-family: Georgia;    /* Set the font family */
         }
@@ -84,7 +84,7 @@ class Ui_Formz(object):
         self.label_6.setObjectName("label_6")
         self.label_6.setStyleSheet("""
         QLabel {
-            font-size: 20px;       /* Change font size */
+            font-size: 15px;       /* Change font size */
             color:  #5D4037;        /* Change text color to gold */
             font-family: Georgia;    /* Set the font family */
         }
@@ -94,7 +94,7 @@ class Ui_Formz(object):
         self.label_7.setObjectName("label_7")
         self.label_7.setStyleSheet("""
         QLabel {
-            font-size: 20px;       /* Change font size */
+            font-size: 15px;       /* Change font size */
            color:  #5D4037;        /* Change text color to gold */
             font-family: Georgia;    /* Set the font family */
         }

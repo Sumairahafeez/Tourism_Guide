@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Backend import HistoryTracker as ht
 import navBar
 import DataStructures
+import webbrowser
 
 class Ui_Formm(object):
     
@@ -174,23 +175,29 @@ class Ui_Formm(object):
         self.mainLayout.addWidget(self.centralWidget)
 
     def submitForm(self):
-        """Handle form submission."""
+        """Handle form submission and open email prompt."""
         name = self.nameEdit.text()
         email = self.emailEdit.text()
         message = self.messageEdit.toPlainText()
 
         if name and email and message:
-            # Here you can implement your backend functionality to save the data or send it via email
-            print(f"Name: {name}")
-            print(f"Email: {email}")
-            print(f"Message: {message}")
-            
-            # Optionally, show a confirmation message
+            # Create the email content
+            recipient = "swayAwayPakistan@gmail.com"
+            subject = f"Message from {name}"
+            body = f"Name: {name}\nEmail: {email}\nMessage: {message}"
+
+        # Generate mailto URL
+            mailto_url = f"mailto:{recipient}?subject={QtCore.QUrl.toPercentEncoding(subject).data().decode()}&body={QtCore.QUrl.toPercentEncoding(body).data().decode()}"
+
+        # Open the email prompt
+            webbrowser.open(mailto_url)
+
+        # Optionally, show a confirmation message
             msg_box = QtWidgets.QMessageBox()
-            msg_box.setText("Your message has been submitted successfully.")
+            msg_box.setText("Your message has been submitted successfully. An email draft has been opened in your default email client.")
             msg_box.exec_()
 
-            # Clear form fields after submission
+        # Clear form fields after submission
             self.nameEdit.clear()
             self.emailEdit.clear()
             self.messageEdit.clear()

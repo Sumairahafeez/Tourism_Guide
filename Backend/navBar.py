@@ -40,14 +40,12 @@ def showTravelPlan(Form):
     travelPlanUI.setupUi(travelPlanPage)
     travelPlanPage.show() 
 def showMainPage(Form):
-    #print("Main Page")
-    #Form.close()
+    """Close the current form and show the main page."""
+    Form.close()  # Close the current form
     mainPage = QtWidgets.QWidget()
-    mainUI = Ui_Forms()
+    mainUI = Ui_Forms()  # Assuming Ui_Forms is a valid class
     mainUI.setupUi(mainPage)
     mainPage.show()
-    #sys.exit(app.exec_())
-    #mainPage.open_main_page(mainPage)
 def showLahoreMap():
        print("Map")
        dialog = QtWidgets.QDialog()

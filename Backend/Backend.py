@@ -111,12 +111,12 @@ class HistoryTracker:
     def getAll(self):
         actions = self.history.getAll()
         return actions
-    def getoldest(self):
-        return self.readFromcsv()[:7]
     def getLatest(self):
+        return self.readFromcsv()[:7]
+    def getoldest(self):
         actions = self.readFromcsv()
-        actions.reverse()
-        return actions[:7]
+        actions.reverse()[:7]
+        return actions
     def writeTocsv(self, action):
         with open('history.csv', 'a', newline='') as file:
             writer = csv.writer(file)
@@ -185,7 +185,7 @@ def showMap(start_place):
     plt.figure(figsize=(12, 10))
     
     # Draw the graph with adjusted parameters
-    nx.draw(nx_graph, pos, with_labels=True, node_size=7500, node_color='#895129', font_size=10, font_color='#E2B99D', font_family = 'Georgia')  # Draw the graph
+    nx.draw(nx_graph, pos, with_labels=True, node_size=1500, node_color='brown', font_size=12, font_weight='bold')
     edge_labels = nx.get_edge_attributes(nx_graph, 'weight')
     nx.draw_networkx_edge_labels(nx_graph, pos, edge_labels=edge_labels, font_size=10)
     

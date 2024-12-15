@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Backend import HistoryTracker as ht
 import navBar
-class Ui_Formmm(object):
+class Ui_Formm(object):
     
     def setupUi(self, Form):
         self.Form = Form  # Store the Form reference for later use
@@ -87,7 +87,7 @@ class Ui_Formmm(object):
         self.cards.clear()
 
         if not actions:  # Check if actions is empty
-            no_data_label = QtWidgets.QLabel("No History available.")
+            no_data_label = QtWidgets.QLabel("No recommendations available.")
             self.centralLayout.addWidget(no_data_label)
             return
 
@@ -111,8 +111,8 @@ class Ui_Formmm(object):
             bar_layout.setContentsMargins(10, 5, 13, 0)
             # Text section
             text_layout = QtWidgets.QVBoxLayout()
-            title_label = QtWidgets.QLabel(f"{node}", notification_bar)
-            title_label.setFont(QtGui.QFont("Georgia", 12, QtGui.QFont.Bold))
+            title_label = QtWidgets.QLabel(f"Notification: {node}", notification_bar)
+            title_label.setFont(QtGui.QFont("Arial", 12, QtGui.QFont.Bold))
             text_layout.addWidget(title_label)
 
             bar_layout.addLayout(text_layout)
@@ -141,27 +141,24 @@ class Ui_Formmm(object):
             self.centralLayout.addWidget(notification_bar)
             self.cards.append(notification_bar)
     def dismissNotification(self, notification_bar):
-        # # Remove the notification bar from the layout
-        # self.centralLayout.removeWidget(notification_bar)
-        # notification_bar.deleteLater()
-        pass
-        # self.cards.remove(notification_bar)    
+        self.centralLayout.removeWidget(notification_bar)
+        notification_bar.deleteLater()
+        self.cards.remove(notification_bar)
+        
     def refreshRecommendations(self):
-        selected_category = self.comboBox2.currentText()
-        print(selected_category) 
+        selected_category = self.comboBox2.currentText() 
         if(selected_category == 'Oldest'):
             actions = self.Tracker.getoldest()
-            self.createCards(actions)
             
         elif(selected_category == 'Latest'):
             actions = self.Tracker.getLatest()
-            self.createCards(actions)
+        self.createCards(actions)    
             
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Formmm()
+    ui = Ui_Formm()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())

@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5 import QtWidgets,QtWebEngineWidgets
-from HistoryUI import Ui_Formmm as history
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMainWindow, QApplication
+from HistoryUI import Ui_Formm as history
 from DestinationUI import Ui_Formm as destination
 from AboutusUI import Ui_Formz as aboutus
 from TravelPlansUI import Ui_Formm as travelplans
@@ -11,9 +12,8 @@ def showHistoryPage(Form):
     Form.close()
     historyPage = QtWidgets.QWidget()
     historyUI = history()
-    historyUI.setupUi(historyPage)  
+    historyUI.setupUi(historyPage)
     historyPage.show()
-
 def showDestinationPage(Form):
     Form.close()
     destinationPage = QtWidgets.QWidget()
@@ -47,26 +47,7 @@ def showMainPage(Form):
     mainUI.setupUi(mainPage)
     mainPage.show()
     #sys.exit(app.exec_())
-    #mainPage.open_main_page(mainPage)
-def showLahoreMap():
-       print("Map")
-       dialog = QtWidgets.QDialog()
-       dialog.setWindowTitle("Map")
-       dialog.resize(600, 400)
-
-    # Create QWebEngineView to display the map
-       web_view = QtWebEngineWidgets.QWebEngineView()
-
-    # Define the Google Maps URL (center the map on Lahore as an example)
-       google_maps_url = "https://www.google.com/maps/place/Lahore"
-
-       web_view.setUrl(QtCore.QUrl(google_maps_url))
-
-       layout = QtWidgets.QVBoxLayout()
-       layout.addWidget(web_view)
-
-       dialog.setLayout(layout)
-       dialog.exec_()      
+    #mainPage.open_main_page(mainPage)   
 def handle_sway_away(Form):
         QtWidgets.QMessageBox.information(Form,"lets gooo.!!","Navigating to SWAY AWAY ...")           
 def navBar(navLayout,Form):
@@ -95,7 +76,7 @@ def navBar(navLayout,Form):
             if label == "My Travel Plans":
                button.clicked.connect(lambda:showTravelPlan(Form))
             if label == "Maps":
-               button.clicked.connect(showLahoreMap)
+               button.clicked.connect(lambda:destination.showLahoreMap)
             if label == "Destinations":
                button.clicked.connect(lambda:showDestinationPage(Form))
             if label == "Log Out":

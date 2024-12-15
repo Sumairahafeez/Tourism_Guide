@@ -3,14 +3,15 @@ from Backend import HistoryTracker as ht
 import navBar
 import DataStructures
 
-
 class Ui_Formm(object):
+    
     def setupUi(self, Form):
-        self.Form = Form
+        self.Form = Form  # Store the Form reference for later use
         self.Tracker = ht.createInstance()
-        self.iterniaryTree = DataStructures.RBTreeNode  # Ensure to use your RBTreeNode class here
-        self.cards = []  # List to track dynamically created cards
+        self.iterniaryTree = DataStructures.RBTreeNode  # Make sure to use your RBTreeNode here
+        self.cards = []
 
+        # Initialize the UI window
         Form.setObjectName("Form")
         Form.resize(2012, 1081)
         Form.setStyleSheet("""
@@ -18,34 +19,39 @@ class Ui_Formm(object):
                 background: qlineargradient(
                     spread: pad,
                     x1: 0, y1: 0, x2: 1, y2: 1,
-                    stop: 0 #F5F5DC,
-                    stop: 1 #8B4513
+                    stop: 0 #F5F5DC,  /* Beige color */
+                    stop: 1 #8B4513   /* Dark brown color */
                 );
             }
         """)
 
+        # Create the main horizontal layout
         self.mainLayout = QtWidgets.QHBoxLayout(Form)
 
-        # Side Navbar
+        # 1. Side Navbar
         self.navbar = QtWidgets.QWidget(Form)
         self.navbar.setFixedWidth(200)
         self.navbar.setStyleSheet("""
             QWidget {
-                background-color: #D2B48C;
-                border-right: 2px solid #F5F5DC;
+                background-color: #D2B48C;  /* Gradient from beige to dark brown */
+                border-right: 2px solid #F5F5DC;  /* Beige border */
             }
         """)
         self.navLayout = QtWidgets.QVBoxLayout(self.navbar)
         self.navLayout.setContentsMargins(10, 10, 10, 10)
-        navBar.navBar(self.navLayout, self.Form)
+        navBar.navBar(self.navLayout, self.Form)  # Assuming navBar is correctly implemented
 
+        # Add a spacer to push buttons to the top
+        self.navLayout.addSpacerItem(QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
+
+        # Add the navbar to the main layout
         self.mainLayout.addWidget(self.navbar)
 
-        # Top Header Section
+        # 2. Top Header Section
         self.headerWidget = QtWidgets.QWidget(Form)
         self.headerWidget.setStyleSheet("""
             QWidget {
-                background-color: #8B4513;
+                background-color: #8B4513;  /* Dark brown color */
                 color: white;
                 padding: 15px;
                 font-size: 20px;
@@ -58,105 +64,62 @@ class Ui_Formm(object):
         headerLayout.addWidget(headerLabel)
         self.mainLayout.addWidget(self.headerWidget)
 
-        # Central Content
+        # 3. Central Content
         self.centralWidget = QtWidgets.QWidget(Form)
         self.centralLayout = QtWidgets.QVBoxLayout(self.centralWidget)
-        self.centralLayout.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)
+        self.centralLayout.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignHCenter)  # Center cards
 
-        self.mainLayout.addWidget(self.centralWidget)
+        # Create a horizontal layout for combo boxes and the button
+        controlLayout = QtWidgets.QHBoxLayout()
+        controlLayout.setSpacing(20)  # Add spacing between widgets
 
-        # Populate Itinerary Cards
-        self.populate_itinerary_cards()
+        # Add the control layout to the main layout
+        self.centralLayout.addLayout(controlLayout)
 
-    def clear_central_layout(self):
-        """ Helper function to clear the central layout """
-        while self.centralLayout.count():
-            item = self.centralLayout.takeAt(0)
-            widget = item.widget()
-            if widget:
-                widget.setParent(None)
+        # Fetch itinerary items from the tree
+        itinerary_items = self.iterniaryTree.get_itinerary()  # Make sure this function is properly implemented
 
-    def populate_itinerary_cards(self):
-        """ Populate the itinerary cards dynamically """
-        # Clear previous items
-        self.clear_central_layout()
-        self.cards.clear()
-
-        # Fetch updated itinerary
-        itinerary_items = self.iterniaryTree.get_itinerary()
-
-        # If no items, show a message box
+        # If no itinerary items are found, show a message box
         if not itinerary_items:
             msg_box = QtWidgets.QMessageBox()
             msg_box.setText("No items found in your itinerary.")
             msg_box.exec_()
             return
 
-        # Add cards for each itinerary item
+        # Loop through the fetched itinerary items and create cards
         for key, date_time in itinerary_items:
-            self.add_itinerary_card(key, date_time)
-
-    def add_itinerary_card(self, key, date_time):
-        """ Helper function to add a single itinerary card """
-        card_container = QtWidgets.QWidget()
-        card_container.setFixedSize(900, 180)
-        card_container.setStyleSheet("""
-            QWidget {
-                background-color: #F5F5DC;
-                border: 2px solid #8B4513;
-                border-radius: 10px;
-                padding: 10px;
-            }
-        """)
-        card_layout = QtWidgets.QHBoxLayout(card_container)
-
-        # Labels for place and date/time
-        text_layout = QtWidgets.QVBoxLayout()
-        place_label = QtWidgets.QLabel(f"<b>Place:</b> {key}")
-        date_label = QtWidgets.QLabel(f"<b>Date & Time:</b> {date_time}")
-        text_layout.addWidget(place_label)
-        text_layout.addWidget(date_label)
-
-        # Delete Button
-        delete_btn = QtWidgets.QPushButton("Delete")
-        delete_btn.setStyleSheet("""
-               QPushButton {
-    background: #F5F5DC;  /* Beige */
-    color: #8B4513;       /* Dark brown */
-    font-size: 14px;
-    border: 2px solid #8B4513;
-    border-radius: 10px;
-    padding: 10px;
-}
-QPushButton:hover {
-    background: #D2B48C;  /* Lighter beige */
-}
-QPushButton:pressed {
-    background: #C19A6B;  /* Darker beige */
-}
-
+            card_container = QtWidgets.QWidget()
+            card_container.setFixedSize(900, 180)
+            card_container.setStyleSheet("""
+                QWidget {
+                    background-color: #F5F5DC;
+                    border: 2px solid #8B4513;
+                    border-radius: 10px;
+                    padding: 10px;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                }
             """)
-        delete_btn.clicked.connect(lambda checked, p=key, d=date_time: self.delete_item(p, d))
 
-        # Add widgets to card layout
-        card_layout.addLayout(text_layout)
-        card_layout.addWidget(delete_btn)
+            card_layout = QtWidgets.QHBoxLayout(card_container)
 
-        # Add card to the central layout and track it
-        self.centralLayout.addWidget(card_container)
-        self.cards.append(card_container)
+            text_layout = QtWidgets.QVBoxLayout()
 
-    def delete_item(self, place_name, date_time):
-        """ Delete an item from the itinerary and refresh the UI """
-        if self.iterniaryTree.remove(place_name, date_time):
-            print(f"{place_name} scheduled on {date_time} has been removed.")
-            self.populate_itinerary_cards()  # Refresh the UI
-        else:
-            msg_box = QtWidgets.QMessageBox()
-            msg_box.setWindowTitle("Deletion Error")
-            msg_box.setText(f"{place_name} on {date_time} couldn't be found.")
-            msg_box.exec_()
+            # Display the place and date-time information
+            place_label = QtWidgets.QLabel(f"<b>Place:</b> {key}")
+            date_label = QtWidgets.QLabel(f"<b>Date & Time:</b> {date_time}")
 
+            text_layout.addWidget(place_label)
+            text_layout.addWidget(date_label)
+
+            # Add the text layout (place and date) to the card
+            card_layout.addLayout(text_layout)
+
+            # Add the card to the central layout
+            self.centralLayout.addWidget(card_container)
+            self.cards.append(card_container)
+
+        # Add the central widget to the main layout
+        self.mainLayout.addWidget(self.centralWidget)
 
 if __name__ == "__main__":
     import sys

@@ -5,7 +5,6 @@ import csv
 import os
 from SignUp import Ui_Form  # Replace with actual file name
 from page import Ui_MainWindow
-from UImain import Ui_Form as Ui_Forms
 import navBar
 
 USER_FILE = "users.csv"
@@ -68,8 +67,7 @@ class LoginWindow(QMainWindow):
         self.ui.lineEdit.clear()
         self.ui.lineEdit_2.clear()
     def open_main_page(self):
-        self.main_page = MainPage()
-        self.main_page.show()
+        navBar.showMainPage(self)
         self.close()
 
     def open_admin_page(self):
@@ -106,28 +104,7 @@ class SignUpWindow(QMainWindow):
     def clear_fields(self):
         self.ui.lineEdit.clear()
         self.ui.lineEdit_3.clear()
-class MainPage(QMainWindow):
-    def __init__(self):
-        super(MainPage, self).__init__()
-        self.ui = Ui_Forms()
-        self.ui.setupUi(self)
-        self.setup_main_page()
 
-    def setup_main_page(self):
-        # Customize the Main Page UI here
-        self.ui.pushButton.clicked.connect(self.handle_sway_away)
-        self.ui.pushButton_4.clicked.connect(self.open_about_us_page)
-        self.ui.pushButton_3.clicked.connect(self.open_places)
-
-    def open_about_us_page(self):
-        self.close()
-        navBar.showAboutUs(self)
-    def open_places(self):
-        self.close()
-        navBar.showDestinationPage(self)
-
-    def handle_sway_away(self):
-        QtWidgets.QMessageBox.information(self,"lets gooo.!!","Navigating to SWAY AWAY page...")
 # class AboutUsPage(QMainWindow):
 #     def __init__(self):
 #         super(AboutUsPage, self).__init__()

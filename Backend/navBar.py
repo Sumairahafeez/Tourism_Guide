@@ -5,7 +5,7 @@ from DestinationUI import Ui_Formm as destination
 from AboutusUI import Ui_Formz as aboutus
 from TravelPlansUI import Ui_Formm as travelplans
 from CU import Ui_Formm as contactus
-from UImain import Ui_Form as Ui_Forms
+from UImain import Ui_Form as main_page
 import sys
 def showHistoryPage(Form):
     Form.close()
@@ -40,12 +40,11 @@ def showTravelPlan(Form):
     travelPlanUI.setupUi(travelPlanPage)
     travelPlanPage.show() 
 def showMainPage(Form):
-    """Close the current form and show the main page."""
     Form.close()  # Close the current form
-    mainPage = QtWidgets.QWidget()
-    mainUI = Ui_Forms()  # Assuming Ui_Forms is a valid class
-    mainUI.setupUi(mainPage)
-    mainPage.show()
+    mainWindow=QtWidgets.QWidget()
+    mainPage = main_page()  # Use the MainPage class directly
+    mainPage.setupUi(mainWindow)
+    mainWindow.show()
 def showLahoreMap():
        print("Map")
        dialog = QtWidgets.QDialog()
@@ -66,7 +65,10 @@ def showLahoreMap():
        dialog.setLayout(layout)
        dialog.exec_()      
 def handle_sway_away(Form):
-        QtWidgets.QMessageBox.information(Form,"lets gooo.!!","Navigating to SWAY AWAY ...")           
+        QtWidgets.QMessageBox.information(Form,"lets gooo.!!","Navigating to SWAY AWAY ...")
+def Logout(Form):
+        QtWidgets.QMessageBox.information(Form,"Logging out","Thanks for visiting...")
+        Form.close()
 def navBar(navLayout,Form):
     for label in ["Sway Away","Home", "About Us", "Contact Us", "My Travel Plans", "My History","Maps","Destinations","Log Out"]:
             button = QtWidgets.QPushButton(label)
@@ -97,7 +99,7 @@ def navBar(navLayout,Form):
             if label == "Destinations":
                button.clicked.connect(lambda:showDestinationPage(Form))
             if label == "Log Out":
-               button.clicked.connect(Form.close)
+               button.clicked.connect(lambda:Logout(Form))
             if label == "Sway Away":
                button.clicked.connect(lambda:handle_sway_away(Form))
             if label == "Home":
@@ -107,3 +109,11 @@ def navBar(navLayout,Form):
             if label == "Contact Us":
                button.clicked.connect(lambda: showContactUs(Form))         
             navLayout.addWidget(button)
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+
+    # Initialize the main page
+    mainWindow = MainPage()
+    mainWindow.show()
+
+    sys.exit(app.exec_())

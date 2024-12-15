@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1003</width>
+    <height>849</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>0</y>
+     <width>1021</width>
+     <height>851</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1001</width>
+     <height>841</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/pics/download (8).jpg);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>920</x>
+     <y>0</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bookman Old Style</family>
+     <pointsize>8</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_5 {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 139, 255), stop:1 rgba(70, 130, 180, 255)); /* Dark blue gradient */
+    color: rgba(255, 255, 255, 255); /* White text for contrast */
+    border-radius: 5px;
+}
+
+QPushButton#pushButton_5:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(25, 25, 112, 255), stop:1 rgba(100, 149, 237, 255)); /* Lighter blue gradient for hover */
+}
+
+QPushButton#pushButton_5:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(0, 0, 128, 255); /* Solid navy blue for pressed state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Contact Us</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>0</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bookman Old Style</family>
+     <pointsize>8</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_6 {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 139, 255), stop:1 rgba(70, 130, 180, 255)); /* Dark blue gradient */
+    color: rgba(255, 255, 255, 255); /* White text for contrast */
+    border-radius: 5px;
+}
+
+QPushButton#pushButton_6:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(25, 25, 112, 255), stop:1 rgba(100, 149, 237, 255)); /* Lighter blue gradient for hover */
+}
+
+QPushButton#pushButton_6:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(0, 0, 128, 255); /* Solid navy blue for pressed state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>About Us</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_7">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>800</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bookman Old Style</family>
+     <pointsize>8</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_7 {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 139, 255), stop:1 rgba(70, 130, 180, 255)); /* Dark blue gradient */
+    color: rgba(255, 255, 255, 255); /* White text for contrast */
+    border-radius: 5px;
+}
+
+QPushButton#pushButton_7:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(25, 25, 112, 255), stop:1 rgba(100, 149, 237, 255)); /* Lighter blue gradient for hover */
+}
+
+QPushButton#pushButton_7:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(0, 0, 128, 255); /* Solid navy blue for pressed state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bookman Old Style</family>
+     <pointsize>8</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 139, 255), stop:1 rgba(70, 130, 180, 255)); /* Dark blue gradient */
+    color: rgba(255, 255, 255, 255); /* White text for contrast */
+    border-radius: 5px;
+}
+
+QPushButton#pushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(25, 25, 112, 255), stop:1 rgba(100, 149, 237, 255)); /* Lighter blue gradient for hover */
+}
+
+QPushButton#pushButton:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(0, 0, 128, 255); /* Solid navy blue for pressed state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>SWAY AWAY </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>40</y>
+     <width>411</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Colonna MT</family>
+     <pointsize>52</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+color: rgb(0, 0, 255);</string>
+   </property>
+   <property name="text">
+    <string>JOYLAND</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>190</y>
+     <width>411</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Colonna MT</family>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+color: rgb(0, 0, 255);</string>
+   </property>
+   <property name="text">
+    <string>RATINGS</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>450</y>
+     <width>411</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Colonna MT</family>
+     <pointsize>21</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+color: rgb(0, 0, 255);</string>
+   </property>
+   <property name="text">
+    <string>REVIEWS</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>240</y>
+     <width>55</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>500</y>
+     <width>55</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>210</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bookman Old Style</family>
+     <pointsize>8</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_8 {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 139, 255), stop:1 rgba(70, 130, 180, 255)); /* Dark blue gradient */
+    color: rgba(255, 255, 255, 255); /* White text for contrast */
+    border-radius: 5px;
+}
+
+QPushButton#pushButton_8:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(25, 25, 112, 255), stop:1 rgba(100, 149, 237, 255)); /* Lighter blue gradient for hover */
+}
+
+QPushButton#pushButton_8:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(0, 0, 128, 255); /* Solid navy blue for pressed state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Directions</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>250</y>
+     <width>341</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/pics/Screenshot_1.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_9">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>0</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Bookman Old Style</family>
+     <pointsize>8</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_9 {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 139, 255), stop:1 rgba(70, 130, 180, 255)); /* Dark blue gradient */
+    color: rgba(255, 255, 255, 255); /* White text for contrast */
+    border-radius: 5px;
+}
+
+QPushButton#pushButton_9:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(25, 25, 112, 255), stop:1 rgba(100, 149, 237, 255)); /* Lighter blue gradient for hover */
+}
+
+QPushButton#pushButton_9:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: rgba(0, 0, 128, 255); /* Solid navy blue for pressed state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="pics.qrc"/>
+ </resources>
+ <connections/>
+</ui>

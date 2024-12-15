@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import navBar
+
 
 class Ui_Formz(object):
     def setupUi(self, Form):
@@ -23,7 +23,30 @@ class Ui_Formz(object):
         """)
         self.navLayout = QtWidgets.QVBoxLayout(self.navbar)
         self.navLayout.setContentsMargins(10, 10, 10, 10)
-        navBar.navBar(self.navLayout, Form)
+        
+        # Add buttons to the navbar
+        for label in ["Sway Away", "Home", "About Us", "Contact Us", "My Lists", "My History", "Maps", "Log Out"]:
+            button = QtWidgets.QPushButton(label)
+            button.setFixedSize(180, 50)
+            button.setStyleSheet("""
+                QPushButton {
+                    background-color: #F5F5DC;  /* Beige button background */
+                    color: #8B4513;            /* Dark brown text color */
+                    font-size: 14px;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px;
+                }
+                QPushButton:hover {
+                    background-color: #D2B48C;  /* Lighter beige on hover */
+                }
+                QPushButton:pressed {
+                    background-color: #C19A6B;  /* Darker beige on press */
+                }
+            """)
+            button.setObjectName(f"navButton_{label.lower()}")
+            self.navLayout.addWidget(button)
+        
         # Add a spacer to push buttons to the top
         self.navLayout.addSpacerItem(QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding))
         
@@ -43,16 +66,11 @@ class Ui_Formz(object):
         # Example content (your existing labels and widgets)
         self.label = QtWidgets.QLabel(self.contentArea)
         self.label.setGeometry(QtCore.QRect(0, -20, 2321, 361))
-        self.label.setStyleSheet("background-image: url(./resources/ok.png);"
-                                 "background-position: center;"
-                                 "font-size: 50px; color: #5D4037; font-family: Georgia;"
-                                 "text-align: center;"
-                                 "padding-top: 100px;"                                 
-                                 )
-        self.label.setText("ABOUT US")
+        self.label.setStyleSheet("background-image: url(./resources/ok.png);")
+        self.label.setText("")
         self.label.setObjectName("label")
         self.contentLayout.addWidget(self.label)
-        
+
         self.label_2 = QtWidgets.QLabel(self.contentArea)
         self.label_2.setGeometry(QtCore.QRect(0, 340, 2471, 691))
         self.label_2.setStyleSheet("""
@@ -74,9 +92,10 @@ class Ui_Formz(object):
         self.label_5.setObjectName("label_5")
         self.label_5.setStyleSheet("""
         QLabel {
-            font-size: 20px;       /* Change font size */
-            color:  #5D4037;        /* Change text color to gold */
-            font-family: Georgia;    /* Set the font family */
+            font-size: 12px;       /* Change font size */
+            color: #F5F5DC;        /* Change text color to gold */
+            font-family: Arial;    /* Set the font family */
+            
         }
     """)
         self.label_6 = QtWidgets.QLabel(Form)
@@ -84,9 +103,10 @@ class Ui_Formz(object):
         self.label_6.setObjectName("label_6")
         self.label_6.setStyleSheet("""
         QLabel {
-            font-size: 20px;       /* Change font size */
-            color:  #5D4037;        /* Change text color to gold */
-            font-family: Georgia;    /* Set the font family */
+            font-size: 12px;       /* Change font size */
+            color: #F5F5DC;        /* Change text color to gold */
+            font-family: Arial;    /* Set the font family */
+            
         }
     """)
         self.label_7 = QtWidgets.QLabel(Form)
@@ -94,9 +114,10 @@ class Ui_Formz(object):
         self.label_7.setObjectName("label_7")
         self.label_7.setStyleSheet("""
         QLabel {
-            font-size: 20px;       /* Change font size */
-           color:  #5D4037;        /* Change text color to gold */
-            font-family: Georgia;    /* Set the font family */
+            font-size: 12px;       /* Change font size */
+            color: #F5F5DC;        /* Change text color to gold */
+            font-family: Arial;    /* Set the font family */
+
         }
     """)
         self.mainLayout.addWidget(self.contentArea)
@@ -107,9 +128,9 @@ class Ui_Formz(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.label_5.setText(_translate("Form","Welcome to our platform! We are a team of dedicated professional"))
-        self.label_6.setText(_translate("Form", "Our core values include innovation, integrity, and collaboration."))
-        self.label_7.setText(_translate("Form",  "Thank you for being a part of our journey!"))
+        self.label_5.setText(_translate("Form", "We started our journey with a strong vision,  to show people the worth of our city."))
+        self.label_6.setText(_translate("Form", "Now,we\'ve a strong & cooperative team which guides the tourists to theirs destiny."))
+        self.label_7.setText(_translate("Form", "Your story begins with our story.Step in with us to enjoy the exploration to Lahore ."))
         
         
 

@@ -15,14 +15,17 @@ class Ui_Formm(object):
         Form.setObjectName("Form")
         Form.resize(2012, 1081)
         Form.setStyleSheet("""
-            QWidget {
-                background: qlineargradient(
-                    spread: pad,
-                    x1: 0, y1: 0, x2: 1, y2: 1,
-                    stop: 0 #F5F5DC,  /* Beige color */
-                    stop: 1 #8B4513   /* Dark brown color */
-                );
-            }
+          QWidget {
+    background: qlineargradient(
+        spread: pad,
+        x1: 0, y1: 0, x2: 1, y2: 1,
+        stop: 0 #F5F5DC,  /* Light beige color */
+        stop: 1 #D2B48C   /* Light brown color */
+    );
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    padding: 10px;               /* Padding inside the card */
+}
+
         """)
        
         # Create the main horizontal layout

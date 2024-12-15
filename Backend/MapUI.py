@@ -3,6 +3,7 @@ import os
 import csv
 import random
 import folium
+import matplotlib.pyplot as plt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QPushButton, QLabel, QFileDialog, QTextEdit
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from PyQt5.QtCore import QUrl
@@ -51,6 +52,7 @@ class MapApp(QMainWindow):
             self.result_area.append(f"Loaded places from: {file_path}\n")
             self.result_area.append("Graph created and shortest paths computed.\n")
             self.update_map(file_path)  # Update map visualization
+            self.plot_shortest_paths()  # Plot shortest paths
         else:
             self.result_area.append("No file selected.\n")
 
@@ -99,9 +101,9 @@ class MapApp(QMainWindow):
         else:
             print("Error: Invalid URL.")
 
-# Run the PyQt Application
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MapApp()
-    window.show()
-    sys.exit(app.exec())
+    def plot_shortest_paths(self):
+        if not self.graph:
+            self.result_area.append("Graph data is not loaded.\n")
+            return
+
+        # Assuming the graph has a method `shortest_path` to cal

@@ -72,24 +72,26 @@ class Graph:
         self.nodes[to_node][from_node] = weight  # Assuming undirected graph
     def dijkstra(self, start):
         # Initialize distances and previous nodes
-        distances = {node: float('inf') for node in self.nodes}
-        previous_nodes = {node: None for node in self.nodes}
-        distances[start] = 0
-        unvisited_nodes = list(self.nodes.keys())
-        
-        while unvisited_nodes:
-            # Get the node with the smallest distance
-            current_node = min(unvisited_nodes, key=lambda node: distances[node])
-            unvisited_nodes.remove(current_node)
+        try:
+            distances = {node: float('inf') for node in self.nodes}
+            previous_nodes = {node: None for node in self.nodes}
+            distances[start] = 0
+            unvisited_nodes = list(self.nodes.keys())
             
-            for neighbor, weight in self.nodes[current_node].items():
-                if neighbor in unvisited_nodes:
-                    alternative_route = distances[current_node] + weight
-                    if alternative_route < distances[neighbor]:
-                        distances[neighbor] = alternative_route
-                        previous_nodes[neighbor] = current_node
-        return distances, previous_nodes
-    
+            while unvisited_nodes:
+                # Get the node with the smallest distance
+                current_node = min(unvisited_nodes, key=lambda node: distances[node])
+                unvisited_nodes.remove(current_node)
+                
+                for neighbor, weight in self.nodes[current_node].items():
+                    if neighbor in unvisited_nodes:
+                        alternative_route = distances[current_node] + weight
+                        if alternative_route < distances[neighbor]:
+                            distances[neighbor] = alternative_route
+                            previous_nodes[neighbor] = current_node
+            return distances, previous_nodes
+        except Exception as e:
+            print(e)
 
 class RBNode:
        def __init__(self, key, date_time):

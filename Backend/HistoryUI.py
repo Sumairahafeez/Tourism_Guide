@@ -119,7 +119,7 @@ class Ui_Formmm(object):
 
             # Action buttons section
             button_layout = QtWidgets.QVBoxLayout()
-            dismiss_button = QtWidgets.QPushButton("Dismiss")
+            dismiss_button = QtWidgets.QPushButton("Notified")
             dismiss_button.setFixedSize(80, 30)
             dismiss_button.setStyleSheet("""
                 QPushButton {

@@ -1,17 +1,7 @@
 <RCC>
-  <qresource prefix="imagess">
-    <file>Old Cairo Egypt.jpg</file>
-    <file>s2.png</file>
-    <file>sheesh.png</file>
-    <file>Premium Photo _ Minar e pakistan evening.jfif</file>
-    <file>#SHALIMAR  🍁 (garden of ❤️).jfif</file>
-    <file>Lahore Pakistan 🇵🇰 😍.jfif</file>
-    <file>db.png</file>
-    <file>travel.png</file>
-    <file>01.jpg</file>
-    <file>ok.png</file>
-    <file>pic1.png</file>
-    <file>Lahore Pakistan 🇵🇰 😍.jfif</file>
-    <file>Pin by Alan Whitney on Mughal art and architecture in 2022 _ Mosque architecture, Pakistan culture, Beautiful nature scenes.jfif</file>
+  <qresource prefix="images">
+    <file>mapy.png</file>
+    <file>mapy.png</file>
+    <file>download (9).jfif</file>
   </qresource>
 </RCC>

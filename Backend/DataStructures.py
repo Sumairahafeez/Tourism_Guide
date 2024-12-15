@@ -146,6 +146,61 @@ class RBTree:
         result = []
         self.inorder_traversal(self.root, result)
         return result
+    
+    def remove(self, key, date_time):
+        node = self.find_node(self.root, key, date_time)
+        if node == self.nil:
+            return False  # Node not found
+        self._delete_node(node)
+        return True
+    
+    def find_node(self, node, key, date_time):
+        while node != self.nil:
+            if key < node.key:
+                node = node.left
+            elif key > node.key:
+                node = node.right
+            else:
+                if node.date_time == date_time:
+                    return node
+                else:
+                    return self.nil
+        return self.nil
+
+    def _delete_node(self, node):
+        if node.left == self.nil and node.right == self.nil:
+            # Node is a leaf
+            if node.parent:
+                if node.parent.left == node:
+                    node.parent.left = self.nil
+                else:
+                    node.parent.right = self.nil
+            else:
+                self.root = self.nil
+
+        elif node.left == self.nil or node.right == self.nil:
+            # Node has one child
+            child = node.left if node.left != self.nil else node.right
+            if node.parent:
+                if node.parent.left == node:
+                    node.parent.left = child
+                else:
+                    node.parent.right = child
+            else:
+                self.root = child
+            child.parent = node.parent
+
+        else:
+            # Node with two children
+            successor = self._get_successor(node)
+            node.key, node.date_time = successor.key, successor.date_time
+            self._delete_node(successor)
+
+    def _get_successor(self, node):
+        successor = node.right
+        while successor.left != self.nil:
+            successor = successor.left
+        return successor
 RBTreeNode = RBTree()        
 
 

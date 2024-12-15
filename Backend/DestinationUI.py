@@ -207,48 +207,63 @@ class Ui_Formm(object):
        dialog.exec_()
 
     def addToList(self, place_name):
-       dialog = QtWidgets.QDialog()
-       dialog.setWindowTitle(f"Add {place_name} to Itinerary")
-       dialog.resize(400, 300)
+      dialog = QtWidgets.QDialog()
+      dialog.setWindowTitle(f"Add {place_name} to Itinerary")
+      dialog.resize(400, 300)
 
-       layout = QtWidgets.QVBoxLayout()
+      layout = QtWidgets.QVBoxLayout()
 
     # Calendar to select Date
-       date_label = QtWidgets.QLabel("Select Date:")
-       calendar = QtWidgets.QCalendarWidget()
-       layout.addWidget(date_label)
-       layout.addWidget(calendar)
-    #background clr 
-       background_color = "#F5F5DC"
-       calendar.setStyleSheet(f"background-color: {background_color};")
+      date_label = QtWidgets.QLabel("Select Date:")
+      calendar = QtWidgets.QCalendarWidget()
+      background_color = "#F5F5DC"
+      calendar.setStyleSheet(f"background-color: {background_color};")
+      layout.addWidget(date_label)
+      layout.addWidget(calendar)
+
     # Time picker to select Time
-       time_label = QtWidgets.QLabel("Select Time:")
-       time_picker = QtWidgets.QTimeEdit()
-       time_picker.setDisplayFormat("HH:mm")
-       layout.addWidget(time_label)
-       layout.addWidget(time_picker)
+      time_label = QtWidgets.QLabel("Select Time:")
+      time_picker = QtWidgets.QTimeEdit()
+      time_picker.setDisplayFormat("HH:mm")
+      layout.addWidget(time_label)
+      layout.addWidget(time_picker)
 
     # Confirm Button to finalize adding the place
-       confirm_btn = QtWidgets.QPushButton("Confirm")
-       self.designButton(confirm_btn)
-       layout.addWidget(confirm_btn)
+      confirm_btn = QtWidgets.QPushButton("Confirm")
+      self.designButton(confirm_btn)
+      layout.addWidget(confirm_btn)
 
-       dialog.setLayout(layout)
+      dialog.setLayout(layout)
 
-       def on_confirm():
-          selected_date = calendar.selectedDate().toString("yyyy-MM-dd")
-          selected_time = time_picker.time().toString("HH:mm")
-          # Save the itinerary item
-          self.itineraryTree.insert(place_name, f"{selected_date} at {selected_time}")
+      def on_confirm():
+        selected_date = calendar.selectedDate().toString("yyyy-MM-dd")
+        selected_time = time_picker.time().toString("HH:mm")
+        date_time_str = f"{selected_date} at {selected_time}"
 
-          print(f"Added {place_name} to itinerary on {selected_date} at {selected_time}")
-          self.Tracker.add(f"Added {place_name} to the list on {selected_date} at {selected_time}")
+        # Check for conflicts across all existing places
+        existing_items = self.itineraryTree.get_itinerary()
 
-          dialog.accept()
+        # Iterate through all existing itinerary items to check for conflicts
+        for key, existing_date_time in existing_items:
+            if existing_date_time == date_time_str:
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setIcon(QtWidgets.QMessageBox.Warning)
+                msg_box.setWindowTitle("Conflict Detected")
+                msg_box.setText(f"{place_name} conflicts with an existing booking on {selected_date} at {selected_time}.")
+                msg_box.setInformativeText(f"Please select a different time or date.")
+                msg_box.exec_()
+                return  # Stop the function if a conflict is detected
 
-       confirm_btn.clicked.connect(on_confirm)
+        # Save the itinerary item if no conflict is detected
+        self.itineraryTree.insert(place_name, date_time_str)
+        print(f"Added {place_name} to itinerary on {selected_date} at {selected_time}")
+        self.Tracker.add(f"Added {place_name} to the list on {selected_date} at {selected_time}")
 
-       dialog.exec_()  # Show the dialog
+        dialog.accept()
+
+      confirm_btn.clicked.connect(on_confirm)
+
+      dialog.exec_()  # Show the dialog
 
 
 

@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>990</width>
+    <height>852</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>0</y>
+     <width>1011</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/ok/Screenshot_1.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>-10</x>
+     <y>220</y>
+     <width>1021</width>
+     <height>641</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/ok/Screenshot_2.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>220</y>
+     <width>351</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Colonna MT</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>CONTACT US</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>270</y>
+     <width>491</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Colonna MT</family>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>LET'S GET IN TOUCH</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>330</y>
+     <width>151</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/ok/Screenshot_4.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>330</y>
+     <width>151</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/ok/Screenshot_5.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>330</y>
+     <width>131</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/ok/Screenshot_3.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>480</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(137, 63, 3, 255), stop:1 rgba(255, 255, 255, 255));
+ color:rgba(137,63,3,255);
+ border-radius:5px;
+}
+QPushButton#pushButton:hover{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(150, 63, 45, 255), stop:1 rgba(255, 255, 255, 255));
+}
+QPushButton#pushButton:pressed{
+	padding-left:5px;
+	padding-top:5px:
+	background-color:rgba(140,120,111,255);
+}</string>
+   </property>
+   <property name="text">
+    <string>Location</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>480</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_2{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(137, 63, 3, 255), stop:1 rgba(255, 255, 255, 255));
+ color:rgba(137,63,3,255);
+ border-radius:5px;
+}
+QPushButton#pushButton_2:hover{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(150, 63, 45, 255), stop:1 rgba(255, 255, 255, 255));
+}
+QPushButton#pushButton_2:pressed{
+	padding-left:5px;
+	padding-top:5px:
+	background-color:rgba(140,120,111,255);
+}</string>
+   </property>
+   <property name="text">
+    <string>Email</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>480</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_3{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(137, 63, 3, 255), stop:1 rgba(255, 255, 255, 255));
+ color:rgba(137,63,3,255);
+ border-radius:5px;
+}
+QPushButton#pushButton_3:hover{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(150, 63, 45, 255), stop:1 rgba(255, 255, 255, 255));
+}
+QPushButton#pushButton_3:pressed{
+	padding-left:5px;
+	padding-top:5px:
+	background-color:rgba(140,120,111,255);
+}</string>
+   </property>
+   <property name="text">
+    <string>Phone</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>460</y>
+     <width>191</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Near Walled City,Lahore</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>450</y>
+     <width>201</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>swayaway.pk_gmail.com</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>450</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>+92 345 99 98115</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>550</y>
+     <width>301</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/ok/mapyy.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>780</x>
+     <y>560</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Email</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>610</y>
+     <width>411</width>
+     <height>161</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Your Response</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="plainTextEdit_3">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>560</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="plainText">
+    <string>Name</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>730</x>
+     <y>790</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton#pushButton_4{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(137, 63, 3, 255), stop:1 rgba(255, 255, 255, 255));
+ color:rgba(137,63,3,255);
+ border-radius:5px;
+}
+QPushButton#pushButton_4:hover{
+ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(150, 63, 45, 255), stop:1 rgba(255, 255, 255, 255));
+}
+QPushButton#pushButton_4:pressed{
+	padding-left:5px;
+	padding-top:5px:
+	background-color:rgba(140,120,111,255);
+}</string>
+   </property>
+   <property name="text">
+    <string>Submit</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_12">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>241</width>
+     <height>871</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    background-color: #D2B48C; /* Replace this hex code with the actual brown color */
+    color: white; /* Optional: Adjust text color for better readability */
+    border: 1px solid #8B4513; /* Optional: Add a border with a darker brown for a better effect */
+    padding: 5px; /* Optional: Add some padding for a cleaner look */
+    font-size: 14px; /* Optional: Adjust font size */
+}
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_10">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>40</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+                    background-color: #F5F5DC;  /* Beige button background */
+                    color: #8B4513;            /* Dark brown text color */
+                    font-size: 14px;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px;
+                }
+                QPushButton:hover {
+                    background-color: #D2B48C;  /* Lighter beige on hover */
+                }
+                QPushButton:pressed {
+                    background-color: #C19A6B;  /* Darker beige on press */
+                }</string>
+   </property>
+   <property name="text">
+    <string>Sway Away </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_11">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_11 {
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_11:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_11:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_12">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_12 {
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_12:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_12:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>About Us</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_13">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_13 {
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_13:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_13:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Contact Us</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_14">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>290</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_14 {
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_14:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_14:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>My Lists</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_15">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>360</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_15 {
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_15:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_15:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>My History</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_16">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>430</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_16 {
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_16:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_16:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Maps</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_17">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>490</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_17{
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_17:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_17:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Destination</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_18">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>560</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#pushButton_18 {
+    background-color: #F5F5DC;  /* Beige button background */
+    color: #8B4513;            /* Dark brown text color */
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+#pushButton_18:hover {
+    background-color: #D2B48C;  /* Lighter beige on hover */
+}
+#pushButton_18:pressed {
+    background-color: #C19A6B;  /* Darker beige on press */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Log Out</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="ok.qrc"/>
+ </resources>
+ <connections/>
+</ui>
